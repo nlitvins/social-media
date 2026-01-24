@@ -41,7 +41,7 @@ class PostRepositoryImplTest {
     }
 
     @Test
-    void findNullById(){
+    void findNullById() {
         Post post = sut.findById(888);
 
         assertThat(post)
@@ -49,7 +49,7 @@ class PostRepositoryImplTest {
     }
 
     @Test
-    void save(){
+    void save() {
         Post given = givenPost();
 
         LocalDateTime start = LocalDateTime.now();

@@ -26,7 +26,6 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User findById(int id) {
-        // 2 тесты, когда не найдено
         Optional<UserEntity> userEntity = jpaRepository.findById(id);
         return userEntity
                 .map(OutboundMapper.Users::toDomain)

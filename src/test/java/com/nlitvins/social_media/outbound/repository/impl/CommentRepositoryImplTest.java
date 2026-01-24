@@ -41,7 +41,7 @@ class CommentRepositoryImplTest {
     }
 
     @Test
-    void findNullById(){
+    void findNullById() {
         Comment comment = sut.findById(888);
 
         assertThat(comment)
