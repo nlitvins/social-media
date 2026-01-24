@@ -41,6 +41,14 @@ class CommentRepositoryImplTest {
     }
 
     @Test
+    void findNullById(){
+        Comment comment = sut.findById(888);
+
+        assertThat(comment)
+                .isNull();
+    }
+
+    @Test
     void save() {
         Comment given = givenComment();
 

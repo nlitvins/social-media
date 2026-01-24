@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Transactional
@@ -18,19 +19,21 @@ public class CommentRepositoryImpl implements CommentRepository {
     private final CommentJpaRepository jpaRepository;
 
     @Override
-    public List<Comment> findAll(){
+    public List<Comment> findAll() {
         List<CommentEntity> commentEntities = jpaRepository.findAll();
         return OutboundMapper.Comments.toDomainList(commentEntities);
     }
 
     @Override
-    public Comment findById(int id){
-        CommentEntity commentEntity = jpaRepository.getReferenceById(id);
-        return OutboundMapper.Comments.toDomain(commentEntity);
+    public Comment findById(int id) {
+        Optional<CommentEntity> commentEntity = jpaRepository.findById(id);
+        return commentEntity
+                .map(OutboundMapper.Comments::toDomain)
+                .orElse(null);
     }
 
     @Override
-    public Comment save(Comment comment){
+    public Comment save(Comment comment) {
         CommentEntity commentEntity = OutboundMapper.Comments.toEntity(comment);
         CommentEntity savedCommentEntity = jpaRepository.save(commentEntity);
         return OutboundMapper.Comments.toDomain(savedCommentEntity);

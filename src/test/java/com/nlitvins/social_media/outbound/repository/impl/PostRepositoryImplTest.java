@@ -41,6 +41,14 @@ class PostRepositoryImplTest {
     }
 
     @Test
+    void findNullById(){
+        Post post = sut.findById(888);
+
+        assertThat(post)
+                .isNull();
+    }
+
+    @Test
     void save(){
         Post given = givenPost();
 

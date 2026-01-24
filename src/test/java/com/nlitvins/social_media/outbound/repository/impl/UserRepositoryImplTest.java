@@ -39,6 +39,15 @@ class UserRepositoryImplTest {
     }
 
     @Test
+    void findNullById(){
+        User user = sut.findById(888);
+
+        assertThat(user)
+                .isNull();
+    }
+
+
+    @Test
     void save(){
         User given = givenUser();
         User saved = sut.save(given);
