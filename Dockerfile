@@ -1,11 +1,11 @@
 # Build stage
-FROM gradle:8.14-jdk21 AS build
+FROM gradle:9.3-jdk25 AS build
 WORKDIR /app
 COPY . .
 RUN gradle build --no-daemon
 
 # Run stage
-FROM eclipse-temurin:21-jre-jammy
+FROM eclipse-temurin:25-jre-jammy
 LABEL authors="Nikita"
 WORKDIR /app
 COPY --from=build /app/build/libs/*.jar app.jar
