@@ -5,17 +5,17 @@ import com.nlitvins.social_media.domain.repository.CommentRepository;
 import com.nlitvins.social_media.outbound.model.CommentEntity;
 import com.nlitvins.social_media.outbound.repository.jpa.CommentJpaRepository;
 import com.nlitvins.social_media.outbound.utils.OutboundMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Component
+@Transactional
+@RequiredArgsConstructor
 public class CommentRepositoryImpl implements CommentRepository {
     private final CommentJpaRepository jpaRepository;
-
-    public CommentRepositoryImpl(CommentJpaRepository jpaRepository){
-        this.jpaRepository = jpaRepository;
-    }
 
     @Override
     public List<Comment> findAll(){

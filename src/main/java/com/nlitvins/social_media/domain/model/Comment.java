@@ -9,13 +9,13 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Builder
+@Builder(toBuilder = true)
 @EqualsAndHashCode
 public class Comment {
 
-    private int id;
-    private int authorId;
-    private int postId;
+    private Integer id;
+    private Integer authorId;
+    private Integer postId;
     private String content;
     private LocalDateTime creationTime;
 

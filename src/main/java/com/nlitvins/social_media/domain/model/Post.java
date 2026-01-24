@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @EqualsAndHashCode
-@Builder
+@Builder(toBuilder = true)
 public class Post {
     private int id;
     private int authorId;

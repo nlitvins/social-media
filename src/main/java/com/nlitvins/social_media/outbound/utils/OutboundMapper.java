@@ -23,7 +23,7 @@ public class OutboundMapper {
             commentEntity.setAuthorId(comment.getAuthorId());
             commentEntity.setPostId(comment.getPostId());
             commentEntity.setContent(comment.getContent());
-            commentEntity.setCreationTime(commentEntity.getCreationTime());
+            commentEntity.setCreationTime(comment.getCreationTime());
             return commentEntity;
         }
 

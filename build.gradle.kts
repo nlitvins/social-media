@@ -27,10 +27,12 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-graphql")
+	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-liquibase")
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("org.postgresql:postgresql")
 	annotationProcessor("org.projectlombok:lombok")
+
 	testImplementation("org.springframework.boot:spring-boot-starter-data-jpa-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-graphql-test")
 	testImplementation("org.springframework.boot:spring-boot-starter-liquibase-test")
@@ -38,6 +40,8 @@ dependencies {
 	testImplementation("org.testcontainers:testcontainers-junit-jupiter")
 	testImplementation("org.testcontainers:testcontainers-postgresql")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testCompileOnly("org.projectlombok:lombok")
+	testAnnotationProcessor("org.projectlombok:lombok")
 }
 
 tasks.generateJava {
