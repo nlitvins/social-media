@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @Transactional
@@ -25,8 +26,10 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Override
     public Post findById(int id) {
-        PostEntity postEntity = jpaRepository.getReferenceById(id);
-        return OutboundMapper.Posts.toDomain(postEntity);
+        Optional<PostEntity> postEntity = jpaRepository.findById(id);
+        return postEntity
+                .map(OutboundMapper.Posts::toDomain)
+                .orElse(null);
     }
 
     @Override

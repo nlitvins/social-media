@@ -41,7 +41,15 @@ class PostRepositoryImplTest {
     }
 
     @Test
-    void save(){
+    void findNullById() {
+        Post post = sut.findById(888);
+
+        assertThat(post)
+                .isNull();
+    }
+
+    @Test
+    void save() {
         Post given = givenPost();
 
         LocalDateTime start = LocalDateTime.now();

@@ -22,7 +22,7 @@ class UserRepositoryImplTest {
     private UserRepository sut;
 
     @Test
-    void findAll(){
+    void findAll() {
         List<User> all = sut.findAll();
 
         assertThat(all)
@@ -31,7 +31,7 @@ class UserRepositoryImplTest {
     }
 
     @Test
-    void findById(){
+    void findById() {
         User user = sut.findById(1);
 
         assertThat(user)
@@ -39,7 +39,16 @@ class UserRepositoryImplTest {
     }
 
     @Test
-    void save(){
+    void findNullById() {
+        User user = sut.findById(888);
+
+        assertThat(user)
+                .isNull();
+    }
+
+
+    @Test
+    void save() {
         User given = givenUser();
         User saved = sut.save(given);
 
@@ -54,7 +63,7 @@ class UserRepositoryImplTest {
                 .isNotNull();
     }
 
-    private User givenUser(){
+    private User givenUser() {
         return User.builder()
                 .userName("TestUserName")
                 .build();
