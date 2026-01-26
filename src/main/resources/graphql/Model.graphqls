@@ -28,6 +28,12 @@ type Query{
     comment(id: ID!): Comment
 }
 
+type Mutation{
+    createUser(userName: String!): User!
+    createPost(content: String!, authorId: ID!): Post!
+    createComment(content: String!, postId: ID!, authorId: ID!): Comment!
+}
+
 
 
 
