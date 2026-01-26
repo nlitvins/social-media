@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Setter
-public class PostRequest {
+public class PostCreateRequest {
     private int authorId;
     private String content;
     private LocalDateTime creationTime;

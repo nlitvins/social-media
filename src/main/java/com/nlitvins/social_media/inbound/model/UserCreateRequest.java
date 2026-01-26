@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 @Getter
 @Builder
-public class UserRequest {
+public class UserCreateRequest {
     private String userName;
 }

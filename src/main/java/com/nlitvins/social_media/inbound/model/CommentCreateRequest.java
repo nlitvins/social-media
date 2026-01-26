@@ -9,9 +9,9 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 @Setter
-public class CommentRequest {
-    private Integer authorId;
-    private Integer postId;
+public class CommentCreateRequest {
+    private int authorId;
+    private int postId;
     private String content;
     private LocalDateTime creationTime;
 }

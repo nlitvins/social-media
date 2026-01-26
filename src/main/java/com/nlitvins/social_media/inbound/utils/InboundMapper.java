@@ -3,11 +3,11 @@ package com.nlitvins.social_media.inbound.utils;
 import com.nlitvins.social_media.domain.model.Comment;
 import com.nlitvins.social_media.domain.model.Post;
 import com.nlitvins.social_media.domain.model.User;
-import com.nlitvins.social_media.inbound.model.CommentRequest;
+import com.nlitvins.social_media.inbound.model.CommentCreateRequest;
 import com.nlitvins.social_media.inbound.model.CommentResponse;
-import com.nlitvins.social_media.inbound.model.PostRequest;
+import com.nlitvins.social_media.inbound.model.PostCreateRequest;
 import com.nlitvins.social_media.inbound.model.PostResponse;
-import com.nlitvins.social_media.inbound.model.UserRequest;
+import com.nlitvins.social_media.inbound.model.UserCreateRequest;
 import com.nlitvins.social_media.inbound.model.UserResponse;
 import lombok.experimental.UtilityClass;
 
@@ -41,7 +41,7 @@ public class InboundMapper {
         }
 
 
-        public static Comment toDomain(CommentRequest request) {
+        public static Comment toDomain(CommentCreateRequest request) {
             return Comment.builder()
                     .authorId(request.getAuthorId())
                     .postId(request.getPostId())
@@ -73,7 +73,7 @@ public class InboundMapper {
             return postResponses;
         }
 
-        public static Post toDomain(PostRequest request) {
+        public static Post toDomain(PostCreateRequest request) {
             return Post.builder()
                     .authorId(request.getAuthorId())
                     .content(request.getContent())
@@ -102,7 +102,7 @@ public class InboundMapper {
             return userResponses;
         }
 
-        public static User toDomain(UserRequest request) {
+        public static User toDomain(UserCreateRequest request) {
             return User.builder()
                     .userName(request.getUserName())
                     .build();

@@ -4,34 +4,28 @@ import com.nlitvins.social_media.domain.model.User;
 import com.nlitvins.social_media.domain.usecase.user.UserReadUseCase;
 import com.nlitvins.social_media.inbound.model.UserResponse;
 import com.nlitvins.social_media.inbound.utils.InboundMapper;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
-import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
-
-@RestController
-@RequestMapping(value = "/users", produces = APPLICATION_JSON_VALUE)
+@Controller
+@RequiredArgsConstructor
 public class UserReadController {
 
     private final UserReadUseCase userReadUseCase;
 
-    public UserReadController(UserReadUseCase userReadUseCase) {
-        this.userReadUseCase = userReadUseCase;
-    }
-
-    @GetMapping
+    @QueryMapping
     public List<UserResponse> users() {
         List<User> users = userReadUseCase.getUsers();
         return InboundMapper.Users.toDTOList(users);
     }
 
-    @GetMapping("/{userId}")
-    public UserResponse findUser(@PathVariable int userId) {
-        User user = userReadUseCase.getUserById(userId);
+    @QueryMapping
+    public UserResponse getUser(@Argument int id) {
+        User user = userReadUseCase.getUserById(id);
         return InboundMapper.Users.toDTO(user);
     }
 
