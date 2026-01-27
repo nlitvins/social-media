@@ -18,14 +18,15 @@ public class PostRepositoryFake implements PostRepository {
         return posts
                 .values()
                 .stream()
-                .map(post -> post.toBuilder().build()).toList();
+                .map(post -> post.toBuilder().build())
+                .toList();
     }
 
     @Override
     public Post findById(int id) {
         Post post = posts.get(id);
         return Optional.ofNullable(post)
-                .map(p -> post.toBuilder().build())
+                .map(p -> p.toBuilder().build())
                 .orElse(null);
     }
 

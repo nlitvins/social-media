@@ -18,14 +18,15 @@ public class CommentRepositoryFake implements CommentRepository {
         return comments
                 .values()
                 .stream()
-                .map(comment -> comment.toBuilder().build()).toList();
+                .map(comment -> comment.toBuilder().build())
+                .toList();
     }
 
     @Override
     public Comment findById(int id) {
         Comment comment = comments.get(id);
         return Optional.ofNullable(comment)
-                .map(c -> comment.toBuilder().build())
+                .map(c -> c.toBuilder().build())
                 .orElse(null);
     }
 

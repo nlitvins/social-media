@@ -16,7 +16,8 @@ public class UserRepositoryFake implements UserRepository {
         return users
                 .values()
                 .stream()
-                .map(user -> user.toBuilder().build()).toList();
+                .map(u -> u.toBuilder().build())
+                .toList();
     }
 
     @Override
