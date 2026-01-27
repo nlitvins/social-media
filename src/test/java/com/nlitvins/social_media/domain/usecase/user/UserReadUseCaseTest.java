@@ -37,6 +37,7 @@ class UserReadUseCaseTest {
     @Test
     void returnEmptyListWhenGetUsers() {
         List<User> result = sut.getUsers();
+
         assertTrue(result.isEmpty());
     }
 
@@ -44,6 +45,7 @@ class UserReadUseCaseTest {
     void returnListWhenGetUsersCalled() {
         User user1 = givenUserFirst();
         User user2 = givenUserSecond();
+
         List<User> result = sut.getUsers();
 
         assertNotNull(result);
@@ -54,13 +56,16 @@ class UserReadUseCaseTest {
     @Test
     void returnNullWhenUserNotFound() {
         User result = userRepository.findById(1);
+
         assertNull(result);
     }
 
     @Test
     void returnUserWhenUserFound() {
         User user = givenUserFirst();
+
         User result = userRepository.findById(1);
+
         assertNotNull(result);
         assertEquals(user, result);
     }

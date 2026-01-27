@@ -33,8 +33,8 @@ class UserCreateUseCaseTest {
         User before = userRepository.findById(1);
         assertNull(before);
 
-        User User = givenUserFirst();
-        User result = sut.addUser(User);
+        User user = givenUserFirst();
+        User result = sut.addUser(user);
         assertNotNull(result);
 
         User savedUser = userRepository.findById(1);
