@@ -39,5 +39,13 @@ public class PostRepositoryImpl implements PostRepository {
         return OutboundMapper.Posts.toDomain(savedPostEntity);
     }
 
+    @Override
+    public Post findByAuthorId(int authorId){
+        PostEntity postEntity = jpaRepository.findByAuthorId(authorId);
+        PostEntity savedPostEntity = jpaRepository.save(postEntity);
+        return OutboundMapper.Posts.toDomain(savedPostEntity);
+    }
+
+
 
 }

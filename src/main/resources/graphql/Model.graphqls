@@ -50,6 +50,10 @@ type Mutation{
     createComment(request: CommentCreateRequest!): Comment!
 }
 
+ type Schema{
+     
+ }
+
 
 
 

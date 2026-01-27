@@ -1,21 +1,17 @@
 package com.nlitvins.social_media.inbound.rest.post;
 
 import com.nlitvins.social_media.domain.model.Post;
+import com.nlitvins.social_media.domain.model.User;
 import com.nlitvins.social_media.domain.usecase.post.PostReadUseCase;
 import com.nlitvins.social_media.inbound.model.PostResponse;
 import com.nlitvins.social_media.inbound.utils.InboundMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-
-import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,6 +28,12 @@ public class PostReadController {
     @QueryMapping
     public PostResponse getPost(@Argument int id) {
         Post post = postReadUseCase.getPostById(id);
+        return InboundMapper.Posts.toDTO(post);
+    }
+
+    @SchemaMapping
+    public PostResponse posts(User user) {
+        Post post = postReadUseCase.getPostByAuthorId(user.getId());
         return InboundMapper.Posts.toDTO(post);
     }
 }
