@@ -16,7 +16,7 @@ public class UserRepositoryFake implements UserRepository {
         return users
                 .values()
                 .stream()
-                .map(u -> u.toBuilder().build())
+                .map(user -> user.toBuilder().build())
                 .toList();
     }
 
@@ -24,7 +24,7 @@ public class UserRepositoryFake implements UserRepository {
     public User findById(int id) {
         User user = users.get(id);
         return Optional.ofNullable(user)
-                .map(p -> user.toBuilder().build())
+                .map(u -> u.toBuilder().build())
                 .orElse(null);
     }
 
