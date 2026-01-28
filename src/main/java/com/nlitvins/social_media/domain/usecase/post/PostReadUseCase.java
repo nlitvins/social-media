@@ -1,7 +1,6 @@
 package com.nlitvins.social_media.domain.usecase.post;
 
 import com.nlitvins.social_media.domain.model.Post;
-import com.nlitvins.social_media.domain.model.User;
 import com.nlitvins.social_media.domain.repository.PostRepository;
 import org.springframework.stereotype.Component;
 
@@ -20,8 +19,8 @@ public class PostReadUseCase {
         return postRepository.findAll();
     }
 
-    public List<Post> getPostsByAuthorId(int authorId) {
-        return postRepository.findByAuthorId(authorId);
+    public List<Post> getPostsByAuthorId(List<Integer> authorId) {
+       return postRepository.findByAuthorIdIn(authorId);
     }
 
     public Post getPostById(int id) {

@@ -1,17 +1,21 @@
 package com.nlitvins.social_media.inbound.rest.post;
 
 import com.nlitvins.social_media.domain.model.Post;
+import com.nlitvins.social_media.domain.model.User;
 import com.nlitvins.social_media.domain.usecase.post.PostReadUseCase;
 import com.nlitvins.social_media.inbound.model.PostResponse;
 import com.nlitvins.social_media.inbound.model.UserResponse;
 import com.nlitvins.social_media.inbound.utils.InboundMapper;
+import graphql.schema.DataFetchingEnvironment;
 import lombok.RequiredArgsConstructor;
+import org.dataloader.DataLoader;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Controller
 @RequiredArgsConstructor
@@ -31,9 +35,17 @@ public class PostReadController {
         return InboundMapper.Posts.toDTO(post);
     }
 
-    @SchemaMapping(typeName = "User")
-    public List<PostResponse> posts(UserResponse user) {
-        List<Post> post = postReadUseCase.getPostsByAuthorId(user.getId());
-        return InboundMapper.Posts.toDTOList(post);
+    @SchemaMapping(typeName = "User", field = "posts")
+    public CompletableFuture<List<PostResponse>> posts(
+            UserResponse user,
+            DataFetchingEnvironment env
+    ) {
+
+        DataLoader<Integer, List<Post>> dataLoader = env.getDataLoader("postsByAuthor");
+
+        return dataLoader.load(user.getId())
+                .thenApply(InboundMapper.Posts::toDTOList);
     }
 }
+
+
