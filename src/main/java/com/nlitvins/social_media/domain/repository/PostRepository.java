@@ -12,5 +12,5 @@ public interface PostRepository {
 
     Post save(Post Post);
 
-    Post findByAuthorId(int authorId);
+    List<Post> findByAuthorId(int authorId);
 }

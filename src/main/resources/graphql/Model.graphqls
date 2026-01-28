@@ -1,6 +1,7 @@
 type User {
     id: ID!
     userName: String!
+    posts: [Post]
 }
 
 type Post {
@@ -49,11 +50,3 @@ type Mutation{
     createPost(request: PostCreateRequest!): Post!
     createComment(request: CommentCreateRequest!): Comment!
 }
-
- type Schema{
-     
- }
-
-
-
-

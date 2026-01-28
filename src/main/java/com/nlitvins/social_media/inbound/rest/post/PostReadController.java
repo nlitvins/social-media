@@ -1,9 +1,9 @@
 package com.nlitvins.social_media.inbound.rest.post;
 
 import com.nlitvins.social_media.domain.model.Post;
-import com.nlitvins.social_media.domain.model.User;
 import com.nlitvins.social_media.domain.usecase.post.PostReadUseCase;
 import com.nlitvins.social_media.inbound.model.PostResponse;
+import com.nlitvins.social_media.inbound.model.UserResponse;
 import com.nlitvins.social_media.inbound.utils.InboundMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -31,9 +31,9 @@ public class PostReadController {
         return InboundMapper.Posts.toDTO(post);
     }
 
-    @SchemaMapping
-    public PostResponse posts(User user) {
-        Post post = postReadUseCase.getPostByAuthorId(user.getId());
-        return InboundMapper.Posts.toDTO(post);
+    @SchemaMapping(typeName = "User")
+    public List<PostResponse> posts(UserResponse user) {
+        List<Post> post = postReadUseCase.getPostsByAuthorId(user.getId());
+        return InboundMapper.Posts.toDTOList(post);
     }
 }
