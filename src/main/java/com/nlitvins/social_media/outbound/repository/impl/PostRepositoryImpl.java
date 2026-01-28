@@ -2,7 +2,6 @@ package com.nlitvins.social_media.outbound.repository.impl;
 
 import com.nlitvins.social_media.domain.model.Post;
 import com.nlitvins.social_media.domain.repository.PostRepository;
-import com.nlitvins.social_media.inbound.model.UserResponse;
 import com.nlitvins.social_media.outbound.model.PostEntity;
 import com.nlitvins.social_media.outbound.repository.jpa.PostJpaRepository;
 import com.nlitvins.social_media.outbound.utils.OutboundMapper;
@@ -12,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Component
 @Transactional
@@ -41,7 +41,7 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public List<Post> findByAuthorIdIn(List<Integer> authorId){
+    public List<Post> findByAuthorIdIn(Set<Integer> authorId) {
         List<PostEntity> postEntity = jpaRepository.findByAuthorIdIn(authorId);
         return OutboundMapper.Posts.toDomainList(postEntity);
     }

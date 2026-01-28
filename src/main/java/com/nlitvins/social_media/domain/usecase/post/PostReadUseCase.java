@@ -5,6 +5,7 @@ import com.nlitvins.social_media.domain.repository.PostRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class PostReadUseCase {
@@ -19,8 +20,8 @@ public class PostReadUseCase {
         return postRepository.findAll();
     }
 
-    public List<Post> getPostsByAuthorId(List<Integer> authorId) {
-       return postRepository.findByAuthorIdIn(authorId);
+    public List<Post> getPostsByAuthorId(Set<Integer> authorId) {
+        return postRepository.findByAuthorIdIn(authorId);
     }
 
     public Post getPostById(int id) {

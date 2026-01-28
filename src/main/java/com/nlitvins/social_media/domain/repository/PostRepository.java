@@ -3,6 +3,7 @@ package com.nlitvins.social_media.domain.repository;
 import com.nlitvins.social_media.domain.model.Post;
 
 import java.util.List;
+import java.util.Set;
 
 public interface PostRepository {
 
@@ -10,7 +11,7 @@ public interface PostRepository {
 
     Post findById(int id);
 
-    Post save(Post Post);
+    Post save(Post post);
 
-    List<Post> findByAuthorIdIn(List<Integer> authorId);
+    List<Post> findByAuthorIdIn(Set<Integer> authorId);
 }
