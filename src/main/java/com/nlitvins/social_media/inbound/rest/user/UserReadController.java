@@ -1,6 +1,5 @@
 package com.nlitvins.social_media.inbound.rest.user;
 
-import com.nlitvins.social_media.domain.model.Post;
 import com.nlitvins.social_media.domain.model.User;
 import com.nlitvins.social_media.domain.usecase.user.UserReadUseCase;
 import com.nlitvins.social_media.inbound.model.UserResponse;
@@ -8,7 +7,6 @@ import com.nlitvins.social_media.inbound.utils.InboundMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;

@@ -44,7 +44,4 @@ public class PostRepositoryImpl implements PostRepository {
         List<PostEntity> postEntity = jpaRepository.findByAuthorId(authorId);
         return OutboundMapper.Posts.toDomainList(postEntity);
     }
-
-
-
 }
