@@ -1,7 +1,6 @@
-package com.nlitvins.social_media.inbound.rest.post;
+package com.nlitvins.social_media.inbound.graphql.post;
 
 import com.nlitvins.social_media.domain.model.Post;
-import com.nlitvins.social_media.domain.model.User;
 import com.nlitvins.social_media.domain.usecase.post.PostReadUseCase;
 import com.nlitvins.social_media.inbound.model.PostResponse;
 import com.nlitvins.social_media.inbound.model.UserResponse;
@@ -40,7 +39,6 @@ public class PostReadController {
             UserResponse user,
             DataFetchingEnvironment env
     ) {
-
         DataLoader<Integer, List<Post>> dataLoader = env.getDataLoader("postsByAuthor");
 
         return dataLoader.load(user.getId())

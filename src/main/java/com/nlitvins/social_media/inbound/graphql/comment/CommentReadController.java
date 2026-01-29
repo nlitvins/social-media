@@ -1,4 +1,4 @@
-package com.nlitvins.social_media.inbound.rest.comment;
+package com.nlitvins.social_media.inbound.graphql.comment;
 
 import com.nlitvins.social_media.domain.model.Comment;
 import com.nlitvins.social_media.domain.usecase.comment.CommentReadUseCase;

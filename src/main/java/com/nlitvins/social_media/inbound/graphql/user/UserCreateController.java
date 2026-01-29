@@ -1,4 +1,4 @@
-package com.nlitvins.social_media.inbound.rest.user;
+package com.nlitvins.social_media.inbound.graphql.user;
 
 import com.nlitvins.social_media.domain.model.User;
 import com.nlitvins.social_media.domain.usecase.user.UserCreateUseCase;
