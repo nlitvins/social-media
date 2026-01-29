@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Component
 @Transactional
@@ -40,8 +41,8 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public List<Post> findByAuthorId(int authorId){
-        List<PostEntity> postEntity = jpaRepository.findByAuthorId(authorId);
+    public List<Post> findByAuthorIdIn(Set<Integer> authorId) {
+        List<PostEntity> postEntity = jpaRepository.findByAuthorIdIn(authorId);
         return OutboundMapper.Posts.toDomainList(postEntity);
     }
 }
