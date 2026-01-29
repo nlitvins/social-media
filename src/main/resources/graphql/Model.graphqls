@@ -2,6 +2,7 @@ type User {
     id: ID!
     userName: String!
     posts: [Post]
+    comment: [Comment]
 }
 
 type Post {
@@ -9,6 +10,8 @@ type Post {
     authorId: Int!
     content: String!
     creationTime: String!
+    comments: [Comment]
+    author: User!
 }
 
 type Comment{
@@ -17,6 +20,8 @@ type Comment{
     postId: Int!
     content: String!
     creationTime: String!
+    author: User!
+    post: Post!
 }
 
 type Query{
