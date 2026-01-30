@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Component
 @Transactional
@@ -37,5 +38,11 @@ public class UserRepositoryImpl implements UserRepository {
         UserEntity userEntity = OutboundMapper.Users.toEntity(user);
         UserEntity savedUserEntity = jpaRepository.save(userEntity);
         return OutboundMapper.Users.toDomain(savedUserEntity);
+    }
+
+    @Override
+    public List<User> findByIds(Set<Integer> userIds) {
+        List<UserEntity> UserEntity = jpaRepository.findByIdIn(userIds);
+        return OutboundMapper.Users.toDomainList(UserEntity);
     }
 }

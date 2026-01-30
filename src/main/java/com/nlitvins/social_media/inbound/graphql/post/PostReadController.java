@@ -2,6 +2,7 @@ package com.nlitvins.social_media.inbound.graphql.post;
 
 import com.nlitvins.social_media.domain.model.Post;
 import com.nlitvins.social_media.domain.usecase.post.PostReadUseCase;
+import com.nlitvins.social_media.inbound.model.CommentResponse;
 import com.nlitvins.social_media.inbound.model.PostResponse;
 import com.nlitvins.social_media.inbound.model.UserResponse;
 import com.nlitvins.social_media.inbound.utils.InboundMapper;
@@ -43,6 +44,18 @@ public class PostReadController {
 
         return dataLoader.load(user.getId())
                 .thenApply(InboundMapper.Posts::toDTOList);
+    }
+
+    @SchemaMapping(typeName = "Comment", field = "post")
+    public CompletableFuture <PostResponse> posts(
+            CommentResponse comment,
+            DataFetchingEnvironment env
+    ) {
+        DataLoader<Integer, List<Post>> dataLoader = env.getDataLoader("postsById");
+
+        return dataLoader.load(comment.getPostId())
+                .thenApply(List::getFirst)
+                .thenApply(InboundMapper.Posts::toDTO);
     }
 }
 

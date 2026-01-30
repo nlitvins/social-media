@@ -20,11 +20,15 @@ public class PostReadUseCase {
         return postRepository.findAll();
     }
 
-    public List<Post> getPostsByAuthorId(Set<Integer> authorId) {
-        return postRepository.findByAuthorIdIn(authorId);
+    public List<Post> getPostsByAuthorIds(Set<Integer> authorIds) {
+        return postRepository.findByAuthorIdIn(authorIds);
     }
 
     public Post getPostById(int id) {
         return postRepository.findById(id);
+    }
+
+    public List<Post> getPostsByIds(Set<Integer> postIds) {
+        return postRepository.findByIds(postIds);
     }
 }

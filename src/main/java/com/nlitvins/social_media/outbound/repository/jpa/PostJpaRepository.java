@@ -13,4 +13,6 @@ public interface PostJpaRepository extends JpaRepository<PostEntity, Integer> {
     List<PostEntity> findByAuthorId(int authorId);
 
     List<PostEntity> findByAuthorIdIn(Set<Integer> authorIds);
+
+    List<PostEntity> findByIdIn(Set<Integer> postIds);
 }

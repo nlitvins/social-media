@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Component
 @Transactional
@@ -37,5 +38,17 @@ public class CommentRepositoryImpl implements CommentRepository {
         CommentEntity commentEntity = OutboundMapper.Comments.toEntity(comment);
         CommentEntity savedCommentEntity = jpaRepository.save(commentEntity);
         return OutboundMapper.Comments.toDomain(savedCommentEntity);
+    }
+
+    @Override
+    public List<Comment> findByPostIds(Set<Integer> postIds) {
+        List<CommentEntity> commentEntity = jpaRepository.findByPostIdIn(postIds);
+        return OutboundMapper.Comments.toDomainList(commentEntity);
+    }
+
+    @Override
+    public List<Comment> findByUserIds(Set<Integer> userIds) {
+        List<CommentEntity> commentEntity = jpaRepository.findByAuthorIdIn(userIds);
+        return OutboundMapper.Comments.toDomainList(commentEntity);
     }
 }
