@@ -7,10 +7,11 @@ import org.springframework.graphql.execution.BatchLoaderRegistry;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Component
 public class UserBatchLoader {
@@ -18,17 +19,16 @@ public class UserBatchLoader {
     public UserBatchLoader(
             BatchLoaderRegistry registry,
             UserReadUseCase userReadUseCase) {
-        registry.<Integer, User>forName("usersById")
+        registry.<Integer, List<User>> forName("usersById")
                 .registerMappedBatchLoader((Set<Integer> userIds, BatchLoaderEnvironment env) ->
                         Mono.fromSupplier(() -> {
+                            Map<Integer, List<User>> result = new HashMap<>();
+                            userIds.forEach(id -> result.put(id, new ArrayList<>()));
 
-                            List<User> users = userReadUseCase.getUserByIds(userIds);
+                            userReadUseCase.getUsers(userIds)
+                                    .forEach(user -> result.get(user.getId()).add(user));
 
-                            return users.stream()
-                                    .collect(Collectors.toMap(
-                                            User::getId,
-                                            Function.identity()
-                                    ));
+                            return result;
                         })
                 );
     }

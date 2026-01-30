@@ -46,10 +46,16 @@ public class PostReadController {
                 .thenApply(InboundMapper.Posts::toDTOList);
     }
 
-    @SchemaMapping(typeName = "Comment")
-    public PostResponse post(CommentResponse comment) {
-        Post post = postReadUseCase.getPostById(comment.getPostId());
-        return InboundMapper.Posts.toDTO(post);
+    @SchemaMapping(typeName = "Comment", field = "post")
+    public CompletableFuture <PostResponse> posts(
+            CommentResponse comment,
+            DataFetchingEnvironment env
+    ) {
+        DataLoader<Integer, List<Post>> dataLoader = env.getDataLoader("postsById");
+
+        return dataLoader.load(comment.getPostId())
+                .thenApply(List::getFirst)
+                .thenApply(InboundMapper.Posts::toDTO);
     }
 }
 

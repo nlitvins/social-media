@@ -27,4 +27,8 @@ public class PostReadUseCase {
     public Post getPostById(int id) {
         return postRepository.findById(id);
     }
+
+    public List<Post> getPosts(Set<Integer> postsIds) {
+        return postRepository.findByIds(postsIds);
+    }
 }

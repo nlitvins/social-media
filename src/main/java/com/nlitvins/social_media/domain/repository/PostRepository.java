@@ -14,4 +14,6 @@ public interface PostRepository {
     Post save(Post post);
 
     List<Post> findByAuthorIdIn(Set<Integer> authorId);
+
+    List<Post> findByIds(Set<Integer> postIds);
 }

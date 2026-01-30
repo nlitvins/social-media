@@ -28,7 +28,7 @@ public class CommentReadUseCase {
         return commentRepository.findByPostIds(postIds);
     }
 
-    public List<Comment> getCommentByUserId(Set<Integer> userIds) {
+    public List<Comment> getComments(Set<Integer> userIds) {
         return commentRepository.findByUserIds(userIds);
     }
 }

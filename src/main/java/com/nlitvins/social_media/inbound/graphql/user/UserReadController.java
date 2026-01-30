@@ -36,24 +36,26 @@ public class UserReadController {
     }
 
     @SchemaMapping(typeName = "Post", field = "author")
-    public CompletableFuture<UserResponse> users(
+    public CompletableFuture <UserResponse> users(
             PostResponse post,
             DataFetchingEnvironment env
     ) {
-        DataLoader<Integer, User> dataLoader = env.getDataLoader("usersById");
+        DataLoader<Integer, List<User>> dataLoader = env.getDataLoader("usersById");
 
         return dataLoader.load(post.getAuthorId())
+                .thenApply(List::getFirst)
                 .thenApply(InboundMapper.Users::toDTO);
     }
 
     @SchemaMapping(typeName = "Comment", field = "author")
-    public CompletableFuture<UserResponse> users(
+    public CompletableFuture <UserResponse> users(
             CommentResponse comment,
             DataFetchingEnvironment env
     ) {
-        DataLoader<Integer, User> dataLoader = env.getDataLoader("usersById");
+        DataLoader<Integer, List<User>> dataLoader = env.getDataLoader("usersById");
 
         return dataLoader.load(comment.getAuthorId())
+                .thenApply(List::getFirst)
                 .thenApply(InboundMapper.Users::toDTO);
     }
 }

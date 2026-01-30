@@ -32,6 +32,20 @@ public class PostBatchLoader {
                             return result;
                         })
                 );
+
+        registry.<Integer, List<Post>>forName("postsById")
+                .registerMappedBatchLoader((Set<Integer> postsId, BatchLoaderEnvironment env) ->
+                        Mono.fromSupplier(() -> {
+                            Map<Integer, List<Post>> result = new HashMap<>();
+                            postsId.forEach(id -> result.put(id, new ArrayList<>()));
+
+                            postReadUseCase.getPosts(postsId)
+                                    .forEach(post -> result.get(post.getId()).add(post));
+
+                            return result;
+                        })
+                );
     }
+
 
 }
