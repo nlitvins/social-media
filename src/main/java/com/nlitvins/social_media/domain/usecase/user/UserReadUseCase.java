@@ -24,7 +24,7 @@ public class UserReadUseCase {
         return userRepository.findById(id);
     }
 
-    public List<User> getUsers(Set<Integer> userIds) {
+    public List<User> getUsersByIds(Set<Integer> userIds) {
         return userRepository.findByIds(userIds);
     }
 }

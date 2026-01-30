@@ -26,7 +26,7 @@ public class CommentBatchLoader {
                             Map<Integer, List<Comment>> result = new HashMap<>();
                             postsIds.forEach(id -> result.put(id, new ArrayList<>()));
 
-                            commentReadUseCase.getCommentByPostId(postsIds)
+                            commentReadUseCase.getCommentsByPostIds(postsIds)
                                     .forEach(comment -> result.get(comment.getPostId()).add(comment));
 
                             return result;
@@ -38,7 +38,7 @@ public class CommentBatchLoader {
                             Map<Integer, List<Comment>> result = new HashMap<>();
                             usersIds.forEach(id -> result.put(id, new ArrayList<>()));
 
-                            commentReadUseCase.getComments(usersIds)
+                            commentReadUseCase.getCommentsByUserIds(usersIds)
                                     .forEach(comment -> result.get(comment.getAuthorId()).add(comment));
 
                             return result;

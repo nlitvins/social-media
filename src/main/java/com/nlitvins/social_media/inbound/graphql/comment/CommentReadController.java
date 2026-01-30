@@ -45,7 +45,7 @@ public class CommentReadController {
                 .thenApply(InboundMapper.Comments::toDTOList);
     }
 
-    @SchemaMapping(typeName = "User", field = "comment")
+    @SchemaMapping(typeName = "User", field = "comments")
     public CompletableFuture<List<CommentResponse>> comments(
             UserResponse user,
             DataFetchingEnvironment env

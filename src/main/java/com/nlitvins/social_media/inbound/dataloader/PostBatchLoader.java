@@ -26,7 +26,7 @@ public class PostBatchLoader {
                             Map<Integer, List<Post>> result = new HashMap<>();
                             authorIds.forEach(id -> result.put(id, new ArrayList<>()));
 
-                            postReadUseCase.getPostsByAuthorId(authorIds)
+                            postReadUseCase.getPostsByAuthorIds(authorIds)
                                     .forEach(post -> result.get(post.getAuthorId()).add(post));
 
                             return result;
@@ -39,7 +39,7 @@ public class PostBatchLoader {
                             Map<Integer, List<Post>> result = new HashMap<>();
                             postsId.forEach(id -> result.put(id, new ArrayList<>()));
 
-                            postReadUseCase.getPosts(postsId)
+                            postReadUseCase.getPostsByIds(postsId)
                                     .forEach(post -> result.get(post.getId()).add(post));
 
                             return result;

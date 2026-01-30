@@ -25,7 +25,7 @@ public class UserBatchLoader {
                             Map<Integer, List<User>> result = new HashMap<>();
                             userIds.forEach(id -> result.put(id, new ArrayList<>()));
 
-                            userReadUseCase.getUsers(userIds)
+                            userReadUseCase.getUsersByIds(userIds)
                                     .forEach(user -> result.get(user.getId()).add(user));
 
                             return result;

@@ -2,7 +2,7 @@ type User {
     id: ID!
     userName: String!
     posts: [Post]
-    comment: [Comment]
+    comments: [Comment]
 }
 
 type Post {

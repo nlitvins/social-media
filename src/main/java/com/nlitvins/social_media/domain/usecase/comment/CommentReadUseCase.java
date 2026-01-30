@@ -24,11 +24,11 @@ public class CommentReadUseCase {
         return commentRepository.findById(id);
     }
 
-    public List<Comment> getCommentByPostId(Set<Integer> postIds) {
+    public List<Comment> getCommentsByPostIds(Set<Integer> postIds) {
         return commentRepository.findByPostIds(postIds);
     }
 
-    public List<Comment> getComments(Set<Integer> userIds) {
+    public List<Comment> getCommentsByUserIds(Set<Integer> userIds) {
         return commentRepository.findByUserIds(userIds);
     }
 }
