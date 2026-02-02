@@ -1,10 +1,13 @@
 package com.nlitvins.social_media.domain.usecase.user;
 
+import com.nlitvins.social_media.domain.exception.BusinessException;
+import com.nlitvins.social_media.domain.exception.ErrorCode;
 import com.nlitvins.social_media.domain.model.User;
 import com.nlitvins.social_media.domain.repository.UserRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 @Component
@@ -21,7 +24,12 @@ public class UserReadUseCase {
     }
 
     public User getUserById(int id) {
-        return userRepository.findById(id);
+        User user = userRepository.findById(id);
+        if (user == null) {
+            throw new BusinessException(ErrorCode.USER_NOT_FOUND,
+                    Map.of("UserId: ", id));
+        }
+        return user;
     }
 
     public List<User> getUsersByIds(Set<Integer> userIds) {
