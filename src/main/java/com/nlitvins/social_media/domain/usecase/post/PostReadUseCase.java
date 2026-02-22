@@ -4,6 +4,7 @@ import com.nlitvins.social_media.domain.exception.BusinessException;
 import com.nlitvins.social_media.domain.exception.ErrorCode;
 import com.nlitvins.social_media.domain.model.Post;
 import com.nlitvins.social_media.domain.repository.PostRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,13 +12,11 @@ import java.util.Map;
 import java.util.Set;
 
 @Component
+@RequiredArgsConstructor
+
 public class PostReadUseCase {
 
     private final PostRepository postRepository;
-
-    public PostReadUseCase(PostRepository postRepository) {
-        this.postRepository = postRepository;
-    }
 
     public List<Post> getPosts() {
         return postRepository.findAll();

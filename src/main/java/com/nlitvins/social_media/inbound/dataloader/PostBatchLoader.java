@@ -14,13 +14,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static com.nlitvins.social_media.inbound.dataloader.LoaderNames.POST_BY_AUTHOR;
+import static com.nlitvins.social_media.inbound.dataloader.LoaderNames.POST_BY_ID;
+
 @Component
 public class PostBatchLoader {
 
     public PostBatchLoader(
             BatchLoaderRegistry registry,
             PostReadUseCase postReadUseCase) {
-        registry.<Integer, List<Post>>forName("postsByAuthor")
+        registry.<Integer, List<Post>>forName(POST_BY_AUTHOR)
                 .registerMappedBatchLoader((Set<Integer> authorIds, BatchLoaderEnvironment env) ->
                         Mono.fromSupplier(() -> {
                             Map<Integer, List<Post>> result = new HashMap<>();
@@ -33,7 +36,7 @@ public class PostBatchLoader {
                         })
                 );
 
-        registry.<Integer, List<Post>>forName("postsById")
+        registry.<Integer, List<Post>>forName(POST_BY_ID)
                 .registerMappedBatchLoader((Set<Integer> postsId, BatchLoaderEnvironment env) ->
                         Mono.fromSupplier(() -> {
                             Map<Integer, List<Post>> result = new HashMap<>();

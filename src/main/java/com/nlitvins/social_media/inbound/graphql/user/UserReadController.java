@@ -17,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import static com.nlitvins.social_media.inbound.dataloader.LoaderNames.USER_BY_ID;
+
 @Controller
 @RequiredArgsConstructor
 public class UserReadController {
@@ -40,7 +42,7 @@ public class UserReadController {
             PostResponse post,
             DataFetchingEnvironment env
     ) {
-        DataLoader<Integer, List<User>> dataLoader = env.getDataLoader("usersById");
+        DataLoader<Integer, List<User>> dataLoader = env.getDataLoader(USER_BY_ID);
 
         return dataLoader.load(post.getAuthorId())
                 .thenApply(List::getFirst)
@@ -52,7 +54,7 @@ public class UserReadController {
             CommentResponse comment,
             DataFetchingEnvironment env
     ) {
-        DataLoader<Integer, List<User>> dataLoader = env.getDataLoader("usersById");
+        DataLoader<Integer, List<User>> dataLoader = env.getDataLoader(USER_BY_ID);
 
         return dataLoader.load(comment.getAuthorId())
                 .thenApply(List::getFirst)

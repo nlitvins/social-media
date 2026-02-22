@@ -4,6 +4,7 @@ import com.nlitvins.social_media.domain.exception.BusinessException;
 import com.nlitvins.social_media.domain.exception.ErrorCode;
 import com.nlitvins.social_media.domain.model.Comment;
 import com.nlitvins.social_media.domain.repository.CommentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,13 +12,10 @@ import java.util.Map;
 import java.util.Set;
 
 @Component
+@RequiredArgsConstructor
 public class CommentReadUseCase {
 
     private final CommentRepository commentRepository;
-
-    public CommentReadUseCase(CommentRepository commentRepository) {
-        this.commentRepository = commentRepository;
-    }
 
     public List<Comment> getComments() {
         return commentRepository.findAll();
