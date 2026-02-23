@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import static com.nlitvins.social_media.inbound.dataloader.LoaderNames.COMMENTS_BY_POST;
+import static com.nlitvins.social_media.inbound.dataloader.LoaderNames.COMMENTS_BY_USER;
 
 @Controller
 @RequiredArgsConstructor
@@ -52,7 +53,7 @@ public class CommentReadController {
             UserResponse user,
             DataFetchingEnvironment env
     ) {
-        DataLoader<Integer, List<Comment>> dataLoader = env.getDataLoader(COMMENTS_BY_POST);
+        DataLoader<Integer, List<Comment>> dataLoader = env.getDataLoader(COMMENTS_BY_USER);
 
         return dataLoader.load(user.getId())
                 .thenApply(InboundMapper.Comments::toDTOList);
