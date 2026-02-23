@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static com.nlitvins.social_media.inbound.dataloader.LoaderNames.USER_BY_ID;
+import static com.nlitvins.social_media.inbound.dataloader.LoaderNames.USERS_BY_ID;
 
 @Component
 public class UserBatchLoader {
@@ -21,7 +21,7 @@ public class UserBatchLoader {
     public UserBatchLoader(
             BatchLoaderRegistry registry,
             UserReadUseCase userReadUseCase) {
-        registry.<Integer, List<User>> forName(USER_BY_ID)
+        registry.<Integer, List<User>>forName(USERS_BY_ID)
                 .registerMappedBatchLoader((Set<Integer> userIds, BatchLoaderEnvironment env) ->
                         Mono.fromSupplier(() -> {
                             Map<Integer, List<User>> result = new HashMap<>();
