@@ -4,20 +4,18 @@ import com.nlitvins.social_media.domain.exception.BusinessException;
 import com.nlitvins.social_media.domain.exception.ErrorCode;
 import com.nlitvins.social_media.domain.model.User;
 import com.nlitvins.social_media.domain.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+@RequiredArgsConstructor
 @Component
 public class UserReadUseCase {
 
     private final UserRepository userRepository;
-
-    public UserReadUseCase(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     public List<User> getUsers() {
         return userRepository.findAll();

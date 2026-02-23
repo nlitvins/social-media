@@ -14,13 +14,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static com.nlitvins.social_media.inbound.dataloader.LoaderNames.COMMENTS_BY_POST;
+import static com.nlitvins.social_media.inbound.dataloader.LoaderNames.COMMENTS_BY_USER;
+
 @Component
 public class CommentBatchLoader {
 
     public CommentBatchLoader(
             BatchLoaderRegistry registry,
             CommentReadUseCase commentReadUseCase) {
-        registry.<Integer, List<Comment>>forName("commentsByPost")
+        registry.<Integer, List<Comment>>forName(COMMENTS_BY_POST)
                 .registerMappedBatchLoader((Set<Integer> postsIds, BatchLoaderEnvironment env) ->
                         Mono.fromSupplier(() -> {
                             Map<Integer, List<Comment>> result = new HashMap<>();
@@ -32,7 +35,7 @@ public class CommentBatchLoader {
                             return result;
                         })
                 );
-        registry.<Integer, List<Comment>>forName("commentsByUser")
+        registry.<Integer, List<Comment>>forName(COMMENTS_BY_USER)
                 .registerMappedBatchLoader((Set<Integer> usersIds, BatchLoaderEnvironment env) ->
                         Mono.fromSupplier(() -> {
                             Map<Integer, List<Comment>> result = new HashMap<>();

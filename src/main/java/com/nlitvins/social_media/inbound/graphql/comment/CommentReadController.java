@@ -17,6 +17,9 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import static com.nlitvins.social_media.inbound.dataloader.LoaderNames.COMMENTS_BY_POST;
+import static com.nlitvins.social_media.inbound.dataloader.LoaderNames.COMMENTS_BY_USER;
+
 @Controller
 @RequiredArgsConstructor
 public class CommentReadController {
@@ -39,7 +42,7 @@ public class CommentReadController {
             PostResponse post,
             DataFetchingEnvironment env
     ) {
-        DataLoader<Integer, List<Comment>> dataLoader = env.getDataLoader("commentsByPost");
+        DataLoader<Integer, List<Comment>> dataLoader = env.getDataLoader(COMMENTS_BY_POST);
 
         return dataLoader.load(post.getId())
                 .thenApply(InboundMapper.Comments::toDTOList);
@@ -50,7 +53,7 @@ public class CommentReadController {
             UserResponse user,
             DataFetchingEnvironment env
     ) {
-        DataLoader<Integer, List<Comment>> dataLoader = env.getDataLoader("commentsByPost");
+        DataLoader<Integer, List<Comment>> dataLoader = env.getDataLoader(COMMENTS_BY_USER);
 
         return dataLoader.load(user.getId())
                 .thenApply(InboundMapper.Comments::toDTOList);

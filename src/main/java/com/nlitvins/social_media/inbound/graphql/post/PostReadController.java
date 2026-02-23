@@ -17,6 +17,9 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import static com.nlitvins.social_media.inbound.dataloader.LoaderNames.POSTS_BY_AUTHOR;
+import static com.nlitvins.social_media.inbound.dataloader.LoaderNames.POSTS_BY_ID;
+
 @Controller
 @RequiredArgsConstructor
 public class PostReadController {
@@ -40,7 +43,7 @@ public class PostReadController {
             UserResponse user,
             DataFetchingEnvironment env
     ) {
-        DataLoader<Integer, List<Post>> dataLoader = env.getDataLoader("postsByAuthor");
+        DataLoader<Integer, List<Post>> dataLoader = env.getDataLoader(POSTS_BY_AUTHOR);
 
         return dataLoader.load(user.getId())
                 .thenApply(InboundMapper.Posts::toDTOList);
@@ -51,7 +54,7 @@ public class PostReadController {
             CommentResponse comment,
             DataFetchingEnvironment env
     ) {
-        DataLoader<Integer, List<Post>> dataLoader = env.getDataLoader("postsById");
+        DataLoader<Integer, List<Post>> dataLoader = env.getDataLoader(POSTS_BY_ID);
 
         return dataLoader.load(comment.getPostId())
                 .thenApply(List::getFirst)

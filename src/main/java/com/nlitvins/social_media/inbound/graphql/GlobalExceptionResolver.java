@@ -1,4 +1,4 @@
-package com.nlitvins.social_media.domain.graphqlexception;
+package com.nlitvins.social_media.inbound.graphql;
 
 import com.nlitvins.social_media.domain.exception.BusinessException;
 import com.nlitvins.social_media.domain.exception.ErrorCode;
