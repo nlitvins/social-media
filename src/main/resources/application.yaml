@@ -28,6 +28,18 @@ spring:
   graphql:
     graphiql:
       enabled: true
+  file-storage:
+    storage:
+      type: s3
+      s3:
+        endpoint: http://localhost:9001
+        access-key: minio
+        bucket: avatars
+#
+#  aws:
+#    region: eu-central-1
+#    s3:
+#      bucket: avatars
 
 logging:
   level:
