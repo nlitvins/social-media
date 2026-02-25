@@ -4,4 +4,4 @@ spring:
 aws:
   region: eu-central-1
   s3:
-    bucket: test-bucket
+    bucket: test-avatars

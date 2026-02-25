@@ -1,5 +1,7 @@
 package com.nlitvins.social_media.outbound.config;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +12,8 @@ import software.amazon.awssdk.services.s3.S3ClientBuilder;
 import java.net.URI;
 import java.util.Optional;
 
+@Slf4j
+@RequiredArgsConstructor
 @Configuration
 public class S3Config {
 
