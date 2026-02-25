@@ -28,4 +28,8 @@ public class FileStorage {
 
         return key;
     }
+
+    public String isFileExist(String key) {
+        return s3Client.get
+    }
 }

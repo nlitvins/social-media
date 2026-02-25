@@ -4,4 +4,7 @@ spring:
 aws:
   region: eu-central-1
   s3:
-    bucket: test-avatars
+    endpoint: http://localhost:9000
+    accessKey: minioadmin
+    secretKey: minioadmin
+    bucket: test

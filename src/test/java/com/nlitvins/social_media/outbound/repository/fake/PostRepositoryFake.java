@@ -2,13 +2,12 @@ package com.nlitvins.social_media.outbound.repository.fake;
 
 import com.nlitvins.social_media.domain.model.Post;
 import com.nlitvins.social_media.domain.repository.PostRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
-@Repository
 public class PostRepositoryFake implements PostRepository {
 
     private final HashMap<Integer, Post> posts = new HashMap<>();
@@ -34,6 +33,16 @@ public class PostRepositoryFake implements PostRepository {
     public Post save(Post post) {
         posts.put(post.getId(), post);
         return post.toBuilder().build();
+    }
+
+    @Override
+    public List<Post> findByAuthorIdIn(Set<Integer> authorId) {
+        return null;
+    }
+
+    @Override
+    public List<Post> findByIds(Set<Integer> postIds) {
+        return null;
     }
 
     public void clear() {
