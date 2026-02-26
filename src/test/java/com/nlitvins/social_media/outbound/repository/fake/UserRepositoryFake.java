@@ -6,10 +6,11 @@ import com.nlitvins.social_media.domain.repository.UserRepository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public class UserRepositoryFake implements UserRepository {
 
-    private final HashMap<Integer, User> users =  new HashMap<>();
+    private final HashMap<Integer, User> users = new HashMap<>();
 
     @Override
     public List<User> findAll() {
@@ -34,7 +35,12 @@ public class UserRepositoryFake implements UserRepository {
         return user.toBuilder().build();
     }
 
-    public void clear(){
+    @Override
+    public List<User> findByIds(Set<Integer> userIds) {
+        return null;
+    }
+
+    public void clear() {
         users.clear();
     }
 }

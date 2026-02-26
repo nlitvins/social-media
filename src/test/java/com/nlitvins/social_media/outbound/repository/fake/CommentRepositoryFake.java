@@ -2,13 +2,12 @@ package com.nlitvins.social_media.outbound.repository.fake;
 
 import com.nlitvins.social_media.domain.model.Comment;
 import com.nlitvins.social_media.domain.repository.CommentRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
-@Repository
 public class CommentRepositoryFake implements CommentRepository {
 
     private final HashMap<Integer, Comment> comments = new HashMap<>();
@@ -36,7 +35,20 @@ public class CommentRepositoryFake implements CommentRepository {
         return comment.toBuilder().build();
     }
 
+    @Override
+    public List<Comment> findByPostIds(Set<Integer> postIds) {
+        return null;
+    }
+
+    @Override
+    public List<Comment> findByUserIds(Set<Integer> userId) {
+        return null;
+    }
+
+
     public void clear() {
         comments.clear();
     }
+
+
 }
